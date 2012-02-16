@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Ryan"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 16 17:49:58 2012"
+  LastModifiedDate	  "Thu Feb 16 17:51:53 2012"
   RTWModifiedTimeStamp	  251314995
-  ModelVersionFormat	  "1.%<AutoIncrement:7>"
+  ModelVersionFormat	  "1.%<AutoIncrement:9>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -831,7 +831,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "150"
+    SIDHighWatermark	    "160"
     Block {
       BlockType		      SubSystem
       Name		      "Dynamics"
@@ -1320,7 +1320,7 @@ Library {
 	  Name			  "Quaternion\nDerivative"
 	  SID			  "133"
 	  Ports			  [2, 1]
-	  Position		  [105, 120, 170, 180]
+	  Position		  [110, 120, 170, 180]
 	  ZOrder		  -17
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -1466,7 +1466,7 @@ Library {
 	  System {
 	    Name		    "Quaternion\nMultiplication"
 	    Location		    [549, 207, 1238, 666]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1634,6 +1634,7 @@ Library {
 	      Ports		      [2, 1]
 	      Position		      [205, 237, 235, 268]
 	      ZOrder		      -17
+	      LibraryVersion	      "1.8"
 	      SourceBlock	      "AeroSim/Mathematics/Vector\nCross Product"
 	      SourceType	      "SubSystem"
 	    }
@@ -2095,10 +2096,187 @@ Library {
 	}
 	Block {
 	  BlockType		  SubSystem
+	  Name			  "Quaternion\nRotation"
+	  SID			  "151"
+	  Ports			  [2, 1]
+	  Position		  [110, 323, 170, 387]
+	  ZOrder		  -17
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Quaternion\nRotation"
+	    Location		    [133, 200, 877, 500]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "vb"
+	      SID		      "152"
+	      Position		      [25, 143, 55, 157]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "qa/b"
+	      SID		      "153"
+	      Position		      [25, 63, 55, 77]
+	      ZOrder		      -1
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant"
+	      SID		      "154"
+	      Position		      [30, 122, 50, 138]
+	      ZOrder		      -4
+	      ShowName		      off
+	      Value		      "0"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux"
+	      SID		      "155"
+	      Ports		      [2, 1]
+	      Position		      [80, 121, 85, 159]
+	      ZOrder		      -12
+	      ShowName		      off
+	      Inputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quaternion\nConjugate"
+	      SID		      "156"
+	      Ports		      [1, 1]
+	      Position		      [115, 6, 165, 34]
+	      ZOrder		      -17
+	      SourceBlock	      "AeroSim/Mathematics/Quaternion\nConjugate"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quaternion \nMultiplication"
+	      SID		      "157"
+	      Ports		      [2, 1]
+	      Position		      [195, 57, 245, 108]
+	      ZOrder		      -17
+	      SourceBlock	      "AeroSim/Mathematics/Quaternion\nMultiplication"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quaternion \nMultiplication1"
+	      SID		      "158"
+	      Ports		      [2, 1]
+	      Position		      [305, 72, 355, 123]
+	      ZOrder		      -17
+	      SourceBlock	      "AeroSim/Mathematics/Quaternion\nMultiplication"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector"
+	      SID		      "159"
+	      Ports		      [1, 1]
+	      Position		      [380, 81, 420, 119]
+	      ZOrder		      -17
+	      ShowName		      off
+	      InputPortWidth	      "4"
+	      IndexOptions	      "Index vector (dialog)"
+	      Indices		      "[2 3 4]"
+	      OutputSizes	      "1"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "va"
+	      SID		      "160"
+	      Position		      [440, 93, 470, 107]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "vb"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Constant"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "qa/b"
+	      SrcPort		      1
+	      Points		      [15, 0]
+	      Branch {
+		DstBlock		"Quaternion \nMultiplication"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -50]
+		DstBlock		"Quaternion\nConjugate"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      Points		      [80, 0; 0, -45]
+	      DstBlock		      "Quaternion \nMultiplication"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Quaternion \nMultiplication"
+	      SrcPort		      1
+	      DstBlock		      "Quaternion \nMultiplication1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Quaternion \nMultiplication1"
+	      SrcPort		      1
+	      DstBlock		      "Selector"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Selector"
+	      SrcPort		      1
+	      DstBlock		      "va"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Quaternion\nConjugate"
+	      SrcPort		      1
+	      Points		      [100, 0; 0, 90]
+	      DstBlock		      "Quaternion \nMultiplication1"
+	      DstPort		      2
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
 	  Name			  "Quaternion\nTransformation"
 	  SID			  "141"
 	  Ports			  [2, 1]
-	  Position		  [105, 218, 170, 282]
+	  Position		  [110, 218, 170, 282]
 	  ZOrder		  -17
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
