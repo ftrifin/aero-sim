@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Ryan"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 16 17:28:56 2012"
-  RTWModifiedTimeStamp	  251314128
-  ModelVersionFormat	  "1.%<AutoIncrement:1>"
+  LastModifiedDate	  "Thu Feb 16 17:35:00 2012"
+  RTWModifiedTimeStamp	  251314488
+  ModelVersionFormat	  "1.%<AutoIncrement:2>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -621,11 +621,163 @@ Library {
     FontAngle		    "normal"
   }
   BlockParameterDefaults {
+    Block {
+      BlockType		      BusCreator
+      Inputs		      "4"
+      DisplayOption	      "none"
+      OutDataTypeStr	      "Inherit: auto"
+      NonVirtualBus	      off
+    }
+    Block {
+      BlockType		      BusSelector
+      OutputAsBus	      off
+    }
+    Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
+      BlockType		      Demux
+      Outputs		      "4"
+      DisplayOption	      "none"
+      BusSelectionMode	      off
+    }
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      OutputFunctionCall      off
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchInputForFeedbackSignals off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Integrator
+      ExternalReset	      "none"
+      InitialConditionSource  "internal"
+      InitialCondition	      "0"
+      LimitOutput	      off
+      UpperSaturationLimit    "inf"
+      LowerSaturationLimit    "-inf"
+      ShowSaturationPort      off
+      ShowStatePort	      off
+      AbsoluteTolerance	      "auto"
+      IgnoreLimit	      off
+      ZeroCross		      on
+      ContinuousStateAttributes	"''"
+    }
+    Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Selector
+      NumberOfDimensions      "1"
+      IndexMode		      "One-based"
+      InputPortWidth	      "-1"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      DataTypeOverrideAppliesTo	"AllNumericTypes"
+      MinMaxOverflowLogging   "UseLocalSettings"
+      SFBlockType	      "NONE"
+      Variant		      off
+      GeneratePreprocessorConditionals off
+    }
+    Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Terminator
+    }
   }
   System {
     Name		    "AeroSim"
-    Location		    [696, 93, 1178, 523]
-    Open		    on
+    Location		    [278, 216, 720, 517]
+    Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    212
     ScreenColor		    "white"
@@ -638,26 +790,1184 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1"
+    SIDHighWatermark	    "99"
     Block {
-      BlockType		      Reference
+      BlockType		      SubSystem
       Name		      "Dynamics"
       SID		      "1"
       Ports		      []
       Position		      [15, 14, 115, 56]
       ZOrder		      -17
-      LibraryVersion	      "1.20"
-      SourceBlock	      "AeroSim2/Dynamics"
-      SourceType	      ""
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskDisplay	      "disp('Dynamics')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Dynamics"
+	Location		[433, 403, 931, 703]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Translational EoM"
+	  SID			  "2"
+	  Ports			  [4, 1]
+	  Position		  [15, 16, 145, 104]
+	  ZOrder		  -17
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Translational EoM"
+	    Location		    [2, 82, 1348, 725]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Inputs"
+	      SID		      "3"
+	      Position		      [45, 103, 75, 117]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Dynamics_TranslationalEoM_Inputs"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Initialisation"
+	      SID		      "4"
+	      Position		      [45, 153, 75, 167]
+	      ZOrder		      -1
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Dynamics_TranslationalEoM_Initialisation"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Parameters"
+	      SID		      "5"
+	      Position		      [25, 268, 55, 282]
+	      ZOrder		      -1
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Logic"
+	      SID		      "6"
+	      Position		      [25, 313, 55, 327]
+	      ZOrder		      -1
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      BusCreator
+	      Name		      "Bus\nCreator"
+	      SID		      "7"
+	      Ports		      [3, 1]
+	      Position		      [620, 57, 625, 143]
+	      ZOrder		      -2
+	      ShowName		      off
+	      Inputs		      "3"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector"
+	      SID		      "8"
+	      Ports		      [1, 2]
+	      Position		      [105, 91, 110, 129]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Force_vec_FI,Mass"
+	      Port {
+		PortNumber		1
+		Name			"<Force_vec_FI>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<Mass>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector1"
+	      SID		      "9"
+	      Ports		      [1, 2]
+	      Position		      [105, 141, 110, 179]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Ini_Velocity_vec_FI,Ini_Position_vec_FI"
+	      Port {
+		PortNumber		1
+		Name			"<Ini_Velocity_vec_FI>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<Ini_Position_vec_FI>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide"
+	      SID		      "10"
+	      Ports		      [2, 1]
+	      Position		      [205, 92, 235, 128]
+	      ZOrder		      -8
+	      ShowName		      off
+	      Inputs		      "*/"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	      Port {
+		PortNumber		1
+		Name			"Acceleration_vec_FI"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Integrator
+	      Name		      "Integrator"
+	      SID		      "11"
+	      Ports		      [2, 1]
+	      Position		      [355, 98, 385, 142]
+	      ZOrder		      -2
+	      ShowName		      off
+	      InitialConditionSource  "external"
+	      Port {
+		PortNumber		1
+		Name			"Velocity_vec_FI"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Integrator
+	      Name		      "Integrator1"
+	      SID		      "12"
+	      Ports		      [2, 1]
+	      Position		      [490, 108, 520, 152]
+	      ZOrder		      -2
+	      ShowName		      off
+	      InitialConditionSource  "external"
+	      Port {
+		PortNumber		1
+		Name			"Position_vec_FI"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "13"
+	      Position		      [110, 265, 130, 285]
+	      ZOrder		      -20
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "14"
+	      Position		      [110, 310, 130, 330]
+	      ZOrder		      -20
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Outputs"
+	      SID		      "15"
+	      Position		      [675, 93, 705, 107]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Dynamics_TranslationalEoM_Outputs"
+	    }
+	    Line {
+	      SrcBlock		      "Parameters"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Logic"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Inputs"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<Force_vec_FI>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      1
+	      DstBlock		      "Divide"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<Mass>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      2
+	      DstBlock		      "Divide"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Initialisation"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nCreator"
+	      SrcPort		      1
+	      DstBlock		      "Outputs"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "Acceleration_vec_FI"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Divide"
+	      SrcPort		      1
+	      Points		      [95, 0]
+	      Branch {
+		DstBlock		"Integrator"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -40]
+		DstBlock		"Bus\nCreator"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      Name		      "<Ini_Velocity_vec_FI>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector1"
+	      SrcPort		      1
+	      Points		      [225, 0]
+	      DstBlock		      "Integrator"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "Velocity_vec_FI"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Integrator"
+	      SrcPort		      1
+	      Points		      [80, 0]
+	      Branch {
+		DstBlock		"Integrator1"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -20]
+		DstBlock		"Bus\nCreator"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      Name		      "<Ini_Position_vec_FI>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector1"
+	      SrcPort		      2
+	      Points		      [360, 0]
+	      DstBlock		      "Integrator1"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "Position_vec_FI"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Integrator1"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      3
+	    }
+	  }
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Mathematics"
+      SID		      "16"
+      Ports		      []
+      Position		      [15, 79, 115, 121]
+      ZOrder		      -17
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskDisplay	      "disp('Mathematics')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Mathematics"
+	Location		[345, 364, 652, 653]
+	Open			on
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Quaternion\nRotation"
+	  SID			  "58"
+	  Ports			  [2, 1]
+	  Position		  [105, 323, 170, 387]
+	  ZOrder		  -17
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Quaternion\nRotation"
+	    Location		    [133, 200, 877, 500]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "vb"
+	      SID		      "59"
+	      Position		      [25, 143, 55, 157]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "qa/b"
+	      SID		      "60"
+	      Position		      [25, 63, 55, 77]
+	      ZOrder		      -1
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant"
+	      SID		      "61"
+	      Position		      [30, 122, 50, 138]
+	      ZOrder		      -4
+	      ShowName		      off
+	      Value		      "0"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux"
+	      SID		      "62"
+	      Ports		      [2, 1]
+	      Position		      [80, 121, 85, 159]
+	      ZOrder		      -12
+	      ShowName		      off
+	      Inputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quaternion\nConjugate"
+	      SID		      "63"
+	      Ports		      [1, 1]
+	      Position		      [115, 6, 165, 34]
+	      ZOrder		      -17
+	      SourceBlock	      "AeroSim/Mathematics/Quaternion\nConjugate"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quaternion \nMultiplication"
+	      SID		      "64"
+	      Ports		      [2, 1]
+	      Position		      [195, 57, 245, 108]
+	      ZOrder		      -17
+	      SourceBlock	      "AeroSim/Mathematics/Quaternion\nMultiplication"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quaternion \nMultiplication1"
+	      SID		      "65"
+	      Ports		      [2, 1]
+	      Position		      [305, 72, 355, 123]
+	      ZOrder		      -17
+	      SourceBlock	      "AeroSim/Mathematics/Quaternion\nMultiplication"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector"
+	      SID		      "66"
+	      Ports		      [1, 1]
+	      Position		      [380, 81, 420, 119]
+	      ZOrder		      -17
+	      ShowName		      off
+	      InputPortWidth	      "4"
+	      IndexOptions	      "Index vector (dialog)"
+	      Indices		      "[2 3 4]"
+	      OutputSizes	      "1"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "va"
+	      SID		      "67"
+	      Position		      [440, 93, 470, 107]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "vb"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Constant"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "qa/b"
+	      SrcPort		      1
+	      Points		      [15, 0]
+	      Branch {
+		DstBlock		"Quaternion \nMultiplication"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -50]
+		DstBlock		"Quaternion\nConjugate"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      Points		      [80, 0; 0, -45]
+	      DstBlock		      "Quaternion \nMultiplication"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Quaternion \nMultiplication"
+	      SrcPort		      1
+	      DstBlock		      "Quaternion \nMultiplication1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Quaternion \nMultiplication1"
+	      SrcPort		      1
+	      DstBlock		      "Selector"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Selector"
+	      SrcPort		      1
+	      DstBlock		      "va"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Quaternion\nConjugate"
+	      SrcPort		      1
+	      Points		      [100, 0; 0, 90]
+	      DstBlock		      "Quaternion \nMultiplication1"
+	      DstPort		      2
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Vector\nCross Product"
+	  SID			  "78"
+	  Ports			  [2, 1]
+	  Position		  [20, 15, 80, 75]
+	  ZOrder		  -17
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Vector\nCross Product"
+	    Location		    [584, 182, 1273, 595]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "A"
+	      SID		      "79"
+	      Position		      [60, 188, 90, 202]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "B"
+	      SID		      "80"
+	      Position		      [60, 233, 90, 247]
+	      ZOrder		      -1
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      BusCreator
+	      Name		      "Bus\nCreator"
+	      SID		      "81"
+	      Ports		      [6, 1]
+	      Position		      [175, 165, 180, 270]
+	      ZOrder		      -2
+	      ShowName		      off
+	      Inputs		      "6"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector"
+	      SID		      "82"
+	      Ports		      [1, 2]
+	      Position		      [230, 101, 235, 134]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "A2,B3"
+	      Port {
+		PortNumber		1
+		Name			"<A2>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<B3>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector1"
+	      SID		      "83"
+	      Ports		      [1, 2]
+	      Position		      [230, 141, 235, 174]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "A3,B1"
+	      Port {
+		PortNumber		1
+		Name			"<A3>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<B1>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector2"
+	      SID		      "84"
+	      Ports		      [1, 2]
+	      Position		      [230, 181, 235, 214]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "A1,B2"
+	      Port {
+		PortNumber		1
+		Name			"<A1>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<B2>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector3"
+	      SID		      "85"
+	      Ports		      [1, 2]
+	      Position		      [230, 221, 235, 254]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "A3,B2"
+	      Port {
+		PortNumber		1
+		Name			"<A3>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<B2>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector4"
+	      SID		      "86"
+	      Ports		      [1, 2]
+	      Position		      [230, 261, 235, 294]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "A1,B3"
+	      Port {
+		PortNumber		1
+		Name			"<A1>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<B3>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector5"
+	      SID		      "87"
+	      Ports		      [1, 2]
+	      Position		      [230, 301, 235, 334]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "A2,B1"
+	      Port {
+		PortNumber		1
+		Name			"<A2>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<B1>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux"
+	      SID		      "88"
+	      Ports		      [1, 3]
+	      Position		      [130, 169, 135, 221]
+	      ZOrder		      -6
+	      ShowName		      off
+	      Outputs		      "3"
+	      DisplayOption	      "bar"
+	      Port {
+		PortNumber		1
+		Name			"A1"
+		PropagatedSignals	"A1"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"A2"
+		PropagatedSignals	"A2"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		3
+		Name			"A3"
+		PropagatedSignals	"A3"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux1"
+	      SID		      "89"
+	      Ports		      [1, 3]
+	      Position		      [130, 214, 135, 266]
+	      ZOrder		      -6
+	      ShowName		      off
+	      Outputs		      "3"
+	      DisplayOption	      "bar"
+	      Port {
+		PortNumber		1
+		Name			"B1"
+		PropagatedSignals	"B1"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"B2"
+		PropagatedSignals	"B2"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		3
+		Name			"B3"
+		PropagatedSignals	"B3"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux"
+	      SID		      "90"
+	      Ports		      [3, 1]
+	      Position		      [340, 99, 345, 221]
+	      ZOrder		      -12
+	      ShowName		      off
+	      Inputs		      "3"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux1"
+	      SID		      "91"
+	      Ports		      [3, 1]
+	      Position		      [340, 219, 345, 341]
+	      ZOrder		      -12
+	      ShowName		      off
+	      Inputs		      "3"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product"
+	      SID		      "92"
+	      Ports		      [2, 1]
+	      Position		      [275, 102, 305, 133]
+	      ZOrder		      -19
+	      ShowName		      off
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product1"
+	      SID		      "93"
+	      Ports		      [2, 1]
+	      Position		      [275, 142, 305, 173]
+	      ZOrder		      -19
+	      ShowName		      off
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product2"
+	      SID		      "94"
+	      Ports		      [2, 1]
+	      Position		      [275, 182, 305, 213]
+	      ZOrder		      -19
+	      ShowName		      off
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product3"
+	      SID		      "95"
+	      Ports		      [2, 1]
+	      Position		      [275, 222, 305, 253]
+	      ZOrder		      -19
+	      ShowName		      off
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product4"
+	      SID		      "96"
+	      Ports		      [2, 1]
+	      Position		      [275, 262, 305, 293]
+	      ZOrder		      -19
+	      ShowName		      off
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product5"
+	      SID		      "97"
+	      Ports		      [2, 1]
+	      Position		      [275, 302, 305, 333]
+	      ZOrder		      -19
+	      ShowName		      off
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Subtract"
+	      SID		      "98"
+	      Ports		      [2, 1]
+	      Position		      [380, 207, 410, 238]
+	      ZOrder		      -31
+	      ShowName		      off
+	      Inputs		      "+-"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "C"
+	      SID		      "99"
+	      Position		      [455, 218, 485, 232]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "Subtract"
+	      SrcPort		      1
+	      DstBlock		      "C"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nCreator"
+	      SrcPort		      1
+	      Points		      [20, 0]
+	      Branch {
+		Points			[0, 20]
+		Branch {
+		  Points		  [0, 40]
+		  Branch {
+		    DstBlock		    "Bus\nSelector4"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 40]
+		    DstBlock		    "Bus\nSelector5"
+		    DstPort		    1
+		  }
+		}
+		Branch {
+		  DstBlock		  "Bus\nSelector3"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		Points			[0, -20]
+		Branch {
+		  DstBlock		  "Bus\nSelector2"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, -40]
+		  Branch {
+		    DstBlock		    "Bus\nSelector1"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, -40]
+		    DstBlock		    "Bus\nSelector"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Mux1"
+	      SrcPort		      1
+	      Points		      [5, 0; 0, -50]
+	      DstBlock		      "Subtract"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      Points		      [5, 0; 0, 55]
+	      DstBlock		      "Subtract"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Product5"
+	      SrcPort		      1
+	      DstBlock		      "Mux1"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "Product4"
+	      SrcPort		      1
+	      DstBlock		      "Mux1"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Product3"
+	      SrcPort		      1
+	      DstBlock		      "Mux1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Product2"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "Product1"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Product"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<B1>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector5"
+	      SrcPort		      2
+	      DstBlock		      "Product5"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<A2>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector5"
+	      SrcPort		      1
+	      DstBlock		      "Product5"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<B3>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector4"
+	      SrcPort		      2
+	      DstBlock		      "Product4"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<A1>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector4"
+	      SrcPort		      1
+	      DstBlock		      "Product4"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<B2>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector3"
+	      SrcPort		      2
+	      DstBlock		      "Product3"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<A3>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector3"
+	      SrcPort		      1
+	      DstBlock		      "Product3"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<B2>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector2"
+	      SrcPort		      2
+	      DstBlock		      "Product2"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<A1>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector2"
+	      SrcPort		      1
+	      DstBlock		      "Product2"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<B1>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector1"
+	      SrcPort		      2
+	      DstBlock		      "Product1"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<A3>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector1"
+	      SrcPort		      1
+	      DstBlock		      "Product1"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<B3>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      2
+	      DstBlock		      "Product"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<A2>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      1
+	      DstBlock		      "Product"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "B3"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Demux1"
+	      SrcPort		      3
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      6
+	    }
+	    Line {
+	      Name		      "B2"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Demux1"
+	      SrcPort		      2
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      5
+	    }
+	    Line {
+	      Name		      "B1"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Demux1"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      4
+	    }
+	    Line {
+	      Name		      "A3"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Demux"
+	      SrcPort		      3
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      3
+	    }
+	    Line {
+	      Name		      "A2"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Demux"
+	      SrcPort		      2
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "A1"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Demux"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "B"
+	      SrcPort		      1
+	      DstBlock		      "Demux1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "A"
+	      SrcPort		      1
+	      DstBlock		      "Demux"
+	      DstPort		      1
+	    }
+	  }
+	}
+      }
     }
   }
 }
