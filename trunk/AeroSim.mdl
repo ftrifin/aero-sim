@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Ryan"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 16 17:47:19 2012"
+  LastModifiedDate	  "Thu Feb 16 17:48:32 2012"
   RTWModifiedTimeStamp	  251314995
-  ModelVersionFormat	  "1.%<AutoIncrement:5>"
+  ModelVersionFormat	  "1.%<AutoIncrement:6>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -633,6 +633,19 @@ Library {
       OutputAsBus	      off
     }
     Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
       BlockType		      Demux
       Outputs		      "4"
       DisplayOption	      "none"
@@ -811,7 +824,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "132"
+    SIDHighWatermark	    "140"
     Block {
       BlockType		      SubSystem
       Name		      "Dynamics"
@@ -1291,6 +1304,140 @@ Library {
 	      SrcBlock		      "Mux"
 	      SrcPort		      1
 	      DstBlock		      "q*"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Quaternion\nDerivative"
+	  SID			  "133"
+	  Ports			  [2, 1]
+	  Position		  [105, 120, 170, 180]
+	  ZOrder		  -17
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Quaternion\nDerivative"
+	    Location		    [549, 207, 1695, 850]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "q"
+	      SID		      "134"
+	      Position		      [15, 28, 45, 42]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "w"
+	      SID		      "135"
+	      Position		      [15, 83, 45, 97]
+	      ZOrder		      -1
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant"
+	      SID		      "136"
+	      Position		      [20, 61, 40, 79]
+	      ZOrder		      -4
+	      ShowName		      off
+	      Value		      "0"
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain"
+	      SID		      "137"
+	      Position		      [220, 44, 260, 76]
+	      ZOrder		      -8
+	      ShowName		      off
+	      Gain		      "0.5"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux"
+	      SID		      "138"
+	      Ports		      [2, 1]
+	      Position		      [75, 61, 80, 99]
+	      ZOrder		      -12
+	      ShowName		      off
+	      Inputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quaternion\nMultiplication"
+	      SID		      "139"
+	      Ports		      [2, 1]
+	      Position		      [120, 14, 180, 101]
+	      ZOrder		      -17
+	      SourceBlock	      "AeroSim/Mathematics/Quaternion\nMultiplication"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "dq/dt"
+	      SID		      "140"
+	      Position		      [300, 53, 330, 67]
+	      ZOrder		      -23
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "w"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Constant"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "q"
+	      SrcPort		      1
+	      DstBlock		      "Quaternion\nMultiplication"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      DstBlock		      "Quaternion\nMultiplication"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Quaternion\nMultiplication"
+	      SrcPort		      1
+	      DstBlock		      "Gain"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gain"
+	      SrcPort		      1
+	      DstBlock		      "dq/dt"
 	      DstPort		      1
 	    }
 	  }
