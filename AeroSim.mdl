@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Ryan"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Feb 17 16:47:49 2012"
-  RTWModifiedTimeStamp	  251398061
-  ModelVersionFormat	  "1.%<AutoIncrement:10>"
+  LastModifiedDate	  "Fri Feb 17 17:27:45 2012"
+  RTWModifiedTimeStamp	  251400437
+  ModelVersionFormat	  "1.%<AutoIncrement:11>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -678,6 +678,9 @@ Library {
       SampleTime	      "-1"
     }
     Block {
+      BlockType		      Ground
+    }
+    Block {
       BlockType		      Inport
       Port		      "1"
       OutputFunctionCall      off
@@ -822,8 +825,8 @@ Library {
   }
   System {
     Name		    "AeroSim"
-    Location		    [278, 216, 720, 517]
-    Open		    on
+    Location		    [227, 394, 669, 695]
+    Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    212
     ScreenColor		    "white"
@@ -836,7 +839,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "222"
+    SIDHighWatermark	    "277"
     Block {
       BlockType		      SubSystem
       Name		      "Dynamics"
@@ -860,7 +863,7 @@ Library {
       System {
 	Name			"Dynamics"
 	Location		[210, 82, 673, 709]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -872,6 +875,406 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Equations of Motion"
+	  SID			  "260"
+	  Ports			  [4, 1]
+	  Position		  [335, 16, 465, 104]
+	  ZOrder		  -17
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Equations of Motion"
+	    Location		    [214, 74, 1364, 717]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Inputs"
+	      SID		      "261"
+	      Position		      [25, 73, 55, 87]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Dynamics_EquationsOfMotion_Inputs"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Initialisation"
+	      SID		      "262"
+	      Position		      [25, 128, 55, 142]
+	      ZOrder		      -1
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Dynamics_EquationsOfMotion_Initialisation"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Parameters"
+	      SID		      "263"
+	      Position		      [25, 218, 55, 232]
+	      ZOrder		      -1
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Logic"
+	      SID		      "264"
+	      Position		      [25, 263, 55, 277]
+	      ZOrder		      -1
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      BusCreator
+	      Name		      "Bus\nCreator"
+	      SID		      "265"
+	      Ports		      [6, 1]
+	      Position		      [585, 73, 590, 187]
+	      ZOrder		      -2
+	      ShowName		      off
+	      Inputs		      "6"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector"
+	      SID		      "266"
+	      Ports		      [1, 1]
+	      Position		      [175, 18, 180, 42]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Force_vec_FI,Mass"
+	      OutputAsBus	      on
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector1"
+	      SID		      "267"
+	      Ports		      [1, 1]
+	      Position		      [175, 38, 180, 62]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Ini_Velocity_vec_FI,Ini_Position_vec_FI"
+	      OutputAsBus	      on
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector2"
+	      SID		      "268"
+	      Ports		      [1, 1]
+	      Position		      [175, 153, 180, 177]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Torque_vec_FB,Inertia_mat_FB"
+	      OutputAsBus	      on
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector3"
+	      SID		      "269"
+	      Ports		      [1, 1]
+	      Position		      [175, 173, 180, 197]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Ini_Omega_vec_FB,Ini_q_FI_FB"
+	      OutputAsBus	      on
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector4"
+	      SID		      "270"
+	      Ports		      [1, 3]
+	      Position		      [405, 33, 410, 87]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Acceleration_vec_FI,Velocity_vec_FI,Position_vec_FI"
+	      Port {
+		PortNumber		1
+		Name			"<Acceleration_vec_FI>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<Velocity_vec_FI>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		3
+		Name			"<Position_vec_FI>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector6"
+	      SID		      "271"
+	      Ports		      [1, 3]
+	      Position		      [405, 168, 410, 222]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Omega_Dot_vec_FB,Omega_vec_FB,q_FI_FB"
+	      Port {
+		PortNumber		1
+		Name			"<Omega_Dot_vec_FB>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<Omega_vec_FB>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		3
+		Name			"<q_FI_FB>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground"
+	      SID		      "272"
+	      Position		      [175, 110, 195, 130]
+	      ZOrder		      -9
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Rotational EoM"
+	      SID		      "273"
+	      Ports		      [4, 1]
+	      Position		      [245, 151, 375, 239]
+	      ZOrder		      -17
+	      LibraryVersion	      "1.10"
+	      SourceBlock	      "AeroSim/Dynamics/Rotational EoM"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "274"
+	      Position		      [110, 215, 130, 235]
+	      ZOrder		      -20
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "275"
+	      Position		      [110, 260, 130, 280]
+	      ZOrder		      -20
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Translational EoM"
+	      SID		      "276"
+	      Ports		      [4, 1]
+	      Position		      [245, 16, 375, 104]
+	      ZOrder		      -17
+	      LibraryVersion	      "1.10"
+	      SourceBlock	      "AeroSim/Dynamics/Translational EoM"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Outputs"
+	      SID		      "277"
+	      Position		      [635, 123, 665, 137]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Dynamics_EquationsOfMotion_Outputs"
+	    }
+	    Line {
+	      SrcBlock		      "Ground"
+	      SrcPort		      1
+	      Points		      [15, 0]
+	      Branch {
+		Points			[0, 85]
+		Branch {
+		  Points		  [0, 20]
+		  DstBlock		  "Rotational EoM"
+		  DstPort		  4
+		}
+		Branch {
+		  DstBlock		  "Rotational EoM"
+		  DstPort		  3
+		}
+	      }
+	      Branch {
+		Points			[0, -30]
+		Branch {
+		  DstBlock		  "Translational EoM"
+		  DstPort		  4
+		}
+		Branch {
+		  Points		  [0, -20]
+		  DstBlock		  "Translational EoM"
+		  DstPort		  3
+		}
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nSelector3"
+	      SrcPort		      1
+	      DstBlock		      "Rotational EoM"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nSelector2"
+	      SrcPort		      1
+	      DstBlock		      "Rotational EoM"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Initialisation"
+	      SrcPort		      1
+	      Points		      [70, 0]
+	      Branch {
+		Points			[0, 50]
+		DstBlock		"Bus\nSelector3"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -85]
+		DstBlock		"Bus\nSelector1"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nSelector1"
+	      SrcPort		      1
+	      DstBlock		      "Translational EoM"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      1
+	      DstBlock		      "Translational EoM"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Inputs"
+	      SrcPort		      1
+	      Points		      [50, 0]
+	      Branch {
+		Points			[0, 85]
+		DstBlock		"Bus\nSelector2"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -50]
+		DstBlock		"Bus\nSelector"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nCreator"
+	      SrcPort		      1
+	      DstBlock		      "Outputs"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<Position_vec_FI>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector4"
+	      SrcPort		      3
+	      Points		      [115, 0; 0, 40]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      3
+	    }
+	    Line {
+	      Name		      "<Velocity_vec_FI>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector4"
+	      SrcPort		      2
+	      Points		      [130, 0; 0, 40]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<Acceleration_vec_FI>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector4"
+	      SrcPort		      1
+	      Points		      [145, 0; 0, 40]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<q_FI_FB>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector6"
+	      SrcPort		      3
+	      Points		      [145, 0; 0, -35]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      6
+	    }
+	    Line {
+	      Name		      "<Omega_vec_FB>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector6"
+	      SrcPort		      2
+	      Points		      [130, 0; 0, -35]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      5
+	    }
+	    Line {
+	      Name		      "<Omega_Dot_vec_FB>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector6"
+	      SrcPort		      1
+	      Points		      [115, 0; 0, -35]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      4
+	    }
+	    Line {
+	      Labels		      [0, 0]
+	      SrcBlock		      "Rotational EoM"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector6"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Translational EoM"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Logic"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Parameters"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	  }
+	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Rotational EoM"
