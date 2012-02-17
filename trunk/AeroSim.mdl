@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Ryan"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 16 17:51:53 2012"
-  RTWModifiedTimeStamp	  251314995
-  ModelVersionFormat	  "1.%<AutoIncrement:9>"
+  LastModifiedDate	  "Fri Feb 17 16:47:49 2012"
+  RTWModifiedTimeStamp	  251398061
+  ModelVersionFormat	  "1.%<AutoIncrement:10>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -766,6 +766,11 @@ Library {
       SampleTime	      "-1"
     }
     Block {
+      BlockType		      Reshape
+      OutputDimensionality    "1-D array"
+      OutputDimensions	      "[1,1]"
+    }
+    Block {
       BlockType		      Selector
       NumberOfDimensions      "1"
       IndexMode		      "One-based"
@@ -818,7 +823,7 @@ Library {
   System {
     Name		    "AeroSim"
     Location		    [278, 216, 720, 517]
-    Open		    off
+    Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    212
     ScreenColor		    "white"
@@ -831,7 +836,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "160"
+    SIDHighWatermark	    "222"
     Block {
       BlockType		      SubSystem
       Name		      "Dynamics"
@@ -854,7 +859,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"Dynamics"
-	Location		[433, 403, 931, 703]
+	Location		[210, 82, 673, 709]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -867,6 +872,584 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Rotational EoM"
+	  SID			  "198"
+	  Ports			  [4, 1]
+	  Position		  [175, 16, 305, 104]
+	  ZOrder		  -17
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Rotational EoM"
+	    Location		    [214, 82, 1348, 725]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Inputs"
+	      SID		      "199"
+	      Position		      [25, 128, 55, 142]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Dynamics_RotationalEoM_Inputs"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Initialisation"
+	      SID		      "200"
+	      Position		      [25, 183, 55, 197]
+	      ZOrder		      -1
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Dynamics_RotationalEoM_Initialisation"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Parameters"
+	      SID		      "201"
+	      Position		      [25, 518, 55, 532]
+	      ZOrder		      -1
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Logic"
+	      SID		      "202"
+	      Position		      [25, 563, 55, 577]
+	      ZOrder		      -1
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      BusCreator
+	      Name		      "Bus\nCreator"
+	      SID		      "203"
+	      Ports		      [3, 1]
+	      Position		      [950, 67, 955, 153]
+	      ZOrder		      -2
+	      ShowName		      off
+	      Inputs		      "3"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      BusCreator
+	      Name		      "Bus\nCreator1"
+	      SID		      "204"
+	      Ports		      [3, 1]
+	      Position		      [190, 91, 195, 159]
+	      ZOrder		      -2
+	      ShowName		      off
+	      Inputs		      "3"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector1"
+	      SID		      "205"
+	      Ports		      [1, 2]
+	      Position		      [190, 171, 195, 209]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Ini_Omega_vec_FB,Ini_q_FI_FB"
+	      Port {
+		PortNumber		1
+		Name			"<Ini_Omega_vec_FB>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<Ini_q_FI_FB>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector2"
+	      SID		      "206"
+	      Ports		      [1, 2]
+	      Position		      [75, 116, 80, 154]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "Torque_vec_FB,Inertia_mat_FB"
+	      Port {
+		PortNumber		1
+		Name			"<Torque_vec_FB>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<Inertia_mat_FB>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Integrator
+	      Name		      "Integrator"
+	      SID		      "207"
+	      Ports		      [2, 1]
+	      Position		      [450, 112, 485, 163]
+	      ZOrder		      -2
+	      InitialConditionSource  "external"
+	      Port {
+		PortNumber		1
+		Name			"Omega_vec_FB"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Integrator
+	      Name		      "Integrator1"
+	      SID		      "208"
+	      Ports		      [2, 1]
+	      Position		      [705, 112, 740, 163]
+	      ZOrder		      -2
+	      InitialConditionSource  "external"
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Omega_Dot"
+	      SID		      "209"
+	      Ports		      [1, 1]
+	      Position		      [230, 104, 330, 146]
+	      ZOrder		      -17
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
+	      RequestExecContextInheritance off
+	      MaskHideContents	      off
+	      Port {
+		PortNumber		1
+		Name			"Omega_Dot_vec_FB"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      System {
+		Name			"Omega_Dot"
+		Location		[392, 347, 1179, 666]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"A4"
+		PaperUnits		"centimeters"
+		TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "Inputs"
+		  SID			  "210"
+		  Position		  [15, 53, 45, 67]
+		  ZOrder		  -1
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  BusSelector
+		  Name			  "Bus\nSelector"
+		  SID			  "211"
+		  Ports			  [1, 5]
+		  Position		  [90, 21, 95, 99]
+		  ZOrder		  -3
+		  ShowName		  off
+		  OutputSignals		  "Omega_vec_FB,Inertia_mat_FB,Omega_vec_FB,Torque_vec_FB,Inertia_mat_FB"
+		  Port {
+		    PortNumber		    1
+		    Name		    "<Omega_vec_FB>"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
+		  Port {
+		    PortNumber		    2
+		    Name		    "<Inertia_mat_FB>"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
+		  Port {
+		    PortNumber		    3
+		    Name		    "<Omega_vec_FB>"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
+		  Port {
+		    PortNumber		    4
+		    Name		    "<Torque_vec_FB>"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
+		  Port {
+		    PortNumber		    5
+		    Name		    "<Inertia_mat_FB>"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "Cross Product"
+		  SID			  "212"
+		  Ports			  [2, 1]
+		  Position		  [295, 18, 355, 67]
+		  ZOrder		  -17
+		  NamePlacement		  "alternate"
+		  LibraryVersion	  "1.9"
+		  SourceBlock		  "AeroSim/Mathematics/Vector\nCross Product"
+		  SourceType		  "SubSystem"
+		}
+		Block {
+		  BlockType		  Product
+		  Name			  "Divide"
+		  SID			  "213"
+		  Ports			  [2, 1]
+		  Position		  [450, 20, 480, 115]
+		  ZOrder		  -8
+		  ShowName		  off
+		  Inputs		  "*/"
+		  Multiplication	  "Matrix(*)"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		  RndMeth		  "Floor"
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  Product
+		  Name			  "Product"
+		  SID			  "214"
+		  Ports			  [2, 1]
+		  Position		  [215, 35, 260, 70]
+		  ZOrder		  -19
+		  ShowName		  off
+		  Multiplication	  "Matrix(*)"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  Reshape
+		  Name			  "Reshape"
+		  SID			  "215"
+		  Ports			  [1, 1]
+		  Position		  [525, 58, 555, 82]
+		  ZOrder		  -23
+		}
+		Block {
+		  BlockType		  Sum
+		  Name			  "Sum"
+		  SID			  "216"
+		  Ports			  [2, 1]
+		  Position		  [395, 35, 415, 55]
+		  ZOrder		  -18
+		  ShowName		  off
+		  IconShape		  "round"
+		  Inputs		  "|-+"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "Omega_Dot"
+		  SID			  "217"
+		  Position		  [595, 63, 625, 77]
+		  ZOrder		  -2
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  SrcBlock		  "Reshape"
+		  SrcPort		  1
+		  DstBlock		  "Omega_Dot"
+		  DstPort		  1
+		}
+		Line {
+		  Name			  "<Inertia_mat_FB>"
+		  Labels		  [0, 0]
+		  SrcBlock		  "Bus\nSelector"
+		  SrcPort		  5
+		  DstBlock		  "Divide"
+		  DstPort		  2
+		}
+		Line {
+		  Name			  "<Inertia_mat_FB>"
+		  Labels		  [0, 0]
+		  SrcBlock		  "Bus\nSelector"
+		  SrcPort		  2
+		  DstBlock		  "Product"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Divide"
+		  SrcPort		  1
+		  DstBlock		  "Reshape"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Sum"
+		  SrcPort		  1
+		  DstBlock		  "Divide"
+		  DstPort		  1
+		}
+		Line {
+		  Name			  "<Torque_vec_FB>"
+		  Labels		  [0, 0]
+		  SrcBlock		  "Bus\nSelector"
+		  SrcPort		  4
+		  Points		  [305, 0]
+		  DstBlock		  "Sum"
+		  DstPort		  2
+		}
+		Line {
+		  Name			  "<Omega_vec_FB>"
+		  Labels		  [0, 0]
+		  SrcBlock		  "Bus\nSelector"
+		  SrcPort		  3
+		  DstBlock		  "Product"
+		  DstPort		  2
+		}
+		Line {
+		  Name			  "<Omega_vec_FB>"
+		  Labels		  [0, 0]
+		  SrcBlock		  "Bus\nSelector"
+		  SrcPort		  1
+		  DstBlock		  "Cross Product"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Cross Product"
+		  SrcPort		  1
+		  DstBlock		  "Sum"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Product"
+		  SrcPort		  1
+		  DstBlock		  "Cross Product"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "Inputs"
+		  SrcPort		  1
+		  DstBlock		  "Bus\nSelector"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quaternion\nDerivative"
+	      SID		      "218"
+	      Ports		      [2, 1]
+	      Position		      [600, 95, 665, 155]
+	      ZOrder		      -17
+	      LibraryVersion	      "1.9"
+	      SourceBlock	      "AeroSim/Mathematics/Quaternion\nDerivative"
+	      SourceType	      "SubSystem"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Quaternion\nNormalise"
+	      SID		      "219"
+	      Ports		      [1, 1]
+	      Position		      [765, 127, 815, 153]
+	      LibraryVersion	      "1.9"
+	      SourceBlock	      "AeroSim/Mathematics/Quaternion\nNormalise"
+	      SourceType	      "SubSystem"
+	      Port {
+		PortNumber		1
+		Name			"q_FI_FB"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "220"
+	      Position		      [110, 515, 130, 535]
+	      ZOrder		      -20
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "221"
+	      Position		      [110, 560, 130, 580]
+	      ZOrder		      -20
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Outputs"
+	      SID		      "222"
+	      Position		      [1005, 103, 1035, 117]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Dynamics_RotationalEoM_Outputs"
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nCreator1"
+	      SrcPort		      1
+	      DstBlock		      "Omega_Dot"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<Torque_vec_FB>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector2"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator1"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<Inertia_mat_FB>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector2"
+	      SrcPort		      2
+	      DstBlock		      "Bus\nCreator1"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "Inputs"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector2"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "q_FI_FB"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Quaternion\nNormalise"
+	      SrcPort		      1
+	      Points		      [55, 0]
+	      Branch {
+		DstBlock		"Bus\nCreator"
+		DstPort			3
+	      }
+	      Branch {
+		Points			[0, -60; -290, 0]
+		DstBlock		"Quaternion\nDerivative"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Integrator1"
+	      SrcPort		      1
+	      DstBlock		      "Quaternion\nNormalise"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<Ini_q_FI_FB>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector1"
+	      SrcPort		      2
+	      Points		      [480, 0; 0, -50]
+	      DstBlock		      "Integrator1"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Quaternion\nDerivative"
+	      SrcPort		      1
+	      DstBlock		      "Integrator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "Omega_vec_FB"
+	      Labels		      [1, 0]
+	      SrcBlock		      "Integrator"
+	      SrcPort		      1
+	      Points		      [80, 0]
+	      Branch {
+		Points			[0, -80]
+		Branch {
+		  Points		  [-400, 0; 0, 45]
+		  DstBlock		  "Bus\nCreator1"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [320, 0; 0, 50]
+		  DstBlock		  "Bus\nCreator"
+		  DstPort		  2
+		}
+	      }
+	      Branch {
+		DstBlock		"Quaternion\nDerivative"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      Name		      "<Ini_Omega_vec_FB>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector1"
+	      SrcPort		      1
+	      Points		      [155, 0; 0, -30]
+	      DstBlock		      "Integrator"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "Omega_Dot_vec_FB"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Omega_Dot"
+	      SrcPort		      1
+	      Points		      [85, 0]
+	      Branch {
+		Points			[0, -80; 485, 0; 0, 35]
+		DstBlock		"Bus\nCreator"
+		DstPort			1
+	      }
+	      Branch {
+		DstBlock		"Integrator"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nCreator"
+	      SrcPort		      1
+	      DstBlock		      "Outputs"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Initialisation"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Logic"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Parameters"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	  }
+	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Translational EoM"
@@ -1194,7 +1777,7 @@ Library {
       System {
 	Name			"Mathematics"
 	Location		[345, 364, 652, 653]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	212
 	ScreenColor		"white"
@@ -1466,7 +2049,7 @@ Library {
 	  System {
 	    Name		    "Quaternion\nMultiplication"
 	    Location		    [549, 207, 1238, 666]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1634,7 +2217,7 @@ Library {
 	      Ports		      [2, 1]
 	      Position		      [205, 237, 235, 268]
 	      ZOrder		      -17
-	      LibraryVersion	      "1.8"
+	      LibraryVersion	      "1.9"
 	      SourceBlock	      "AeroSim/Mathematics/Vector\nCross Product"
 	      SourceType	      "SubSystem"
 	    }
