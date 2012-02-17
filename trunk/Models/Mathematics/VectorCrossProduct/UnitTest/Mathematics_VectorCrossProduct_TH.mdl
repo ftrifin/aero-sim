@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.13"
+    ComputedModelVersion    "1.17"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -38,9 +38,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Ryan"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Feb 13 22:51:48 2012"
-  RTWModifiedTimeStamp	  251074177
-  ModelVersionFormat	  "1.%<AutoIncrement:13>"
+  LastModifiedDate	  "Fri Feb 17 23:08:41 2012"
+  RTWModifiedTimeStamp	  251420915
+  ModelVersionFormat	  "1.%<AutoIncrement:17>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -145,7 +145,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "0"
 	  AbsTol		  "auto"
-	  FixedStep		  "auto"
+	  FixedStep		  "0.1"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -180,7 +180,7 @@ Model {
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
 	  InitialState		  "xInitial"
-	  LimitDataPoints	  on
+	  LimitDataPoints	  off
 	  MaxDataPoints		  "1000"
 	  LoadExternalInput	  off
 	  LoadInitialState	  off
@@ -188,12 +188,12 @@ Model {
 	  SaveCompleteFinalSimState off
 	  SaveFormat		  "Array"
 	  SignalLoggingSaveFormat "ModelDataLogs"
-	  SaveOutput		  on
+	  SaveOutput		  off
 	  SaveState		  off
 	  SignalLogging		  on
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
-	  SaveTime		  on
+	  SaveTime		  off
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
 	  TimeSaveName		  "tout"
@@ -632,8 +632,8 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 235, 39, 1131, 707 ] 
+      CurrentDlgPage	      "Data Import//Export"
+      ConfigPrmDlgPosition     [ 219, -21, 1147, 723 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -687,11 +687,13 @@ Model {
       PreserveConstantTs      off
     }
     Block {
-      BlockType		      Display
-      Format		      "short"
-      Decimation	      "10"
-      Floating		      off
-      SampleTime	      "-1"
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      SampleTime	      "0"
+      FixptAsFi		      off
+      NumInputs		      "1"
     }
   }
   System {
@@ -710,7 +712,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "40"
+    SIDHighWatermark	    "41"
     Block {
       BlockType		      Constant
       Name		      "Constant"
@@ -718,7 +720,7 @@ Model {
       Position		      [15, 20, 90, 40]
       ZOrder		      -4
       ShowName		      off
-      Value		      "[1 2 3]"
+      Value		      "input_v1"
     }
     Block {
       BlockType		      Constant
@@ -727,18 +729,20 @@ Model {
       Position		      [15, 50, 90, 70]
       ZOrder		      -4
       ShowName		      off
-      Value		      "[4 5 6]"
+      Value		      "input_v2"
     }
     Block {
-      BlockType		      Display
-      Name		      "Display"
-      SID		      "37"
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      SID		      "41"
       Ports		      [1]
-      Position		      [235, 14, 320, 76]
-      ZOrder		      -1
+      Position		      [235, 35, 305, 55]
+      ZOrder		      -7
       ShowName		      off
-      Decimation	      "1"
-      Lockdown		      off
+      VariableName	      "output_v"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
     }
     Block {
       BlockType		      Reference
@@ -747,7 +751,7 @@ Model {
       Ports		      [2, 1]
       Position		      [135, 15, 195, 75]
       ZOrder		      -17
-      LibraryVersion	      "1.9"
+      LibraryVersion	      "1.11"
       SourceBlock	      "AeroSim/Mathematics/Vector\nCross Product"
       SourceType	      "SubSystem"
     }
@@ -766,7 +770,7 @@ Model {
     Line {
       SrcBlock		      "Vector \nCross Product"
       SrcPort		      1
-      DstBlock		      "Display"
+      DstBlock		      "To Workspace"
       DstPort		      1
     }
   }
