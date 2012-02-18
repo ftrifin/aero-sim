@@ -2,11 +2,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
 
-diaryFile = [getenv('AeroSim_Install') '\Models\Mathematics\VectorCrossProduct\TestResults\Mathematics_VectorCrossProduct_Test_' date '.txt'];
-if exist(diaryFile, 'file')
-    delete(diaryFile)
+diary_file = [getenv('AeroSim_Install') '\Models\Mathematics\VectorCrossProduct\TestResults\Mathematics_VectorCrossProduct_Test_' date '.txt'];
+if exist(diary_file, 'file')
+    delete(diary_file)
 end
-diary(diaryFile)
+diary(diary_file)
 
 disp('-------------------------------------------------------------------')
 disp('Mathematics_VectorCrossProduct Model Test')
@@ -17,8 +17,8 @@ tolerance = 0.01;
 time_span = 0;
 
 %% Inputs
-input_v1 = [1 2 3];
-input_v2 = [4 5 6];
+input_v1 = [1; 2; 3];
+input_v2 = [4; 5; 6];
 
 %% Expected Output
 expected_output_v = cross(input_v1, input_v2);
@@ -27,21 +27,21 @@ expected_output_v = cross(input_v1, input_v2);
 sim('Mathematics_VectorCrossProduct_TH', time_span)
 
 %% Error Calculation
-error = (output_v - expected_output_v) ./ expected_output_v;
+error = (output_v' - expected_output_v) ./ expected_output_v;
 
 %% Test Result
 disp('Input:')
-disp(['    v1 = [' num2str(input_v1) ']'])
-disp(['    v2 = [' num2str(input_v2) ']'])
+disp(['    v1 = [' num2str(input_v1') ']'])
+disp(['    v2 = [' num2str(input_v2') ']'])
 disp(' ')
 disp('Expected Output:')
-disp(['    v = [' num2str(expected_output_v) ']'])
+disp(['    v = [' num2str(expected_output_v') ']'])
 disp(' ')
 disp('Actual Output:')
 disp(['    v = [' num2str(output_v) ']'])
 disp(' ')
 disp('Error:')
-disp(['    e = [' num2str(error) ']'])
+disp(['    e = [' num2str(error') ']'])
 disp(' ')
 disp('Tolerance:')
 disp(['    t = ' num2str(tolerance)])
