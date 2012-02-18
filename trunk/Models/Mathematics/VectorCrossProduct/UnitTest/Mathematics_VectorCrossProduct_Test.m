@@ -1,6 +1,13 @@
 %% Mathematics_VectorCrossProduct Model Test %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
+
+diaryFile = [getenv('AeroSim_Install') '\Models\Mathematics\VectorCrossProduct\TestResults\Mathematics_VectorCrossProduct_Test_' date '.txt'];
+if exist(diaryFile, 'file')
+    delete(diaryFile)
+end
+diary(diaryFile)
+
 disp('-------------------------------------------------------------------')
 disp('Mathematics_VectorCrossProduct Model Test')
 disp('-------------------------------------------------------------------')
@@ -38,6 +45,7 @@ disp(['    e = [' num2str(error) ']'])
 disp(' ')
 disp('Tolerance:')
 disp(['    t = ' num2str(tolerance)])
+
 disp('-------------------------------------------------------------------')
 if all(error) <= tolerance
     disp('TEST PASSED')
@@ -47,4 +55,5 @@ end
 disp('-------------------------------------------------------------------')
 
 %% Clean Up
-clear time_span tolerance input_v1 input_v2 expected_output_v output_v error
+diary off
+clear diary_file time_span tolerance input_v1 input_v2 expected_output_v output_v error
