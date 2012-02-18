@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.37"
+    ComputedModelVersion    "1.41"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -38,9 +38,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Ryan"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Feb 14 22:27:04 2012"
-  RTWModifiedTimeStamp	  251158843
-  ModelVersionFormat	  "1.%<AutoIncrement:37>"
+  LastModifiedDate	  "Sat Feb 18 10:36:59 2012"
+  RTWModifiedTimeStamp	  251462215
+  ModelVersionFormat	  "1.%<AutoIncrement:41>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -78,7 +78,6 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "Mathematics_QuaternionDerivative_TH"
-    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -143,7 +142,7 @@ Model {
 	  $ObjectID		  4
 	  Version		  "1.11.1"
 	  StartTime		  "0.0"
-	  StopTime		  "72"
+	  StopTime		  "0"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.1"
 	  InitialStep		  "auto"
@@ -160,8 +159,8 @@ Model {
 	  RelTol		  "1e-3"
 	  SolverMode		  "Auto"
 	  ConcurrentTasks	  off
-	  Solver		  "ode4"
-	  SolverName		  "ode4"
+	  Solver		  "FixedStepDiscrete"
+	  SolverName		  "FixedStepDiscrete"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -180,7 +179,7 @@ Model {
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
 	  InitialState		  "xInitial"
-	  LimitDataPoints	  on
+	  LimitDataPoints	  off
 	  MaxDataPoints		  "1000"
 	  LoadExternalInput	  off
 	  LoadInitialState	  off
@@ -188,12 +187,12 @@ Model {
 	  SaveCompleteFinalSimState off
 	  SaveFormat		  "Array"
 	  SignalLoggingSaveFormat "ModelDataLogs"
-	  SaveOutput		  on
+	  SaveOutput		  off
 	  SaveState		  off
 	  SignalLogging		  on
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
-	  SaveTime		  on
+	  SaveTime		  off
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
 	  TimeSaveName		  "tout"
@@ -632,8 +631,8 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 227, 9, 1139, 715 ] 
+      CurrentDlgPage	      "Data Import//Export"
+      ConfigPrmDlgPosition     [ 243, 83, 1124, 633 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -687,41 +686,18 @@ Model {
       PreserveConstantTs      off
     }
     Block {
-      BlockType		      Integrator
-      ExternalReset	      "none"
-      InitialConditionSource  "internal"
-      InitialCondition	      "0"
-      LimitOutput	      off
-      UpperSaturationLimit    "inf"
-      LowerSaturationLimit    "-inf"
-      ShowSaturationPort      off
-      ShowStatePort	      off
-      AbsoluteTolerance	      "auto"
-      IgnoreLimit	      off
-      ZeroCross		      on
-      ContinuousStateAttributes	"''"
-    }
-    Block {
-      BlockType		      Scope
-      ModelBased	      off
-      TickLabels	      "OneTimeTick"
-      ZoomMode		      "on"
-      Grid		      "on"
-      TimeRange		      "auto"
-      YMin		      "-5"
-      YMax		      "5"
-      SaveToWorkspace	      off
-      SaveName		      "ScopeData"
-      LimitDataPoints	      on
-      MaxDataPoints	      "5000"
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
       Decimation	      "1"
-      SampleInput	      off
-      SampleTime	      "-1"
+      SampleTime	      "0"
+      FixptAsFi		      off
+      NumInputs		      "1"
     }
   }
   System {
     Name		    "Mathematics_QuaternionDerivative_TH"
-    Location		    [214, 74, 1364, 717]
+    Location		    [214, 82, 1348, 725]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    212
@@ -735,43 +711,24 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "84"
+    SIDHighWatermark	    "85"
     Block {
       BlockType		      Constant
       Name		      "Constant1"
       SID		      "20"
-      Position		      [20, 81, 105, 99]
+      Position		      [80, 81, 165, 99]
       ZOrder		      -4
       ShowName		      off
-      Value		      "[0 0 10]"
+      Value		      "input_w"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant2"
       SID		      "69"
-      Position		      [195, 151, 280, 169]
+      Position		      [80, 51, 165, 69]
       ZOrder		      -4
       ShowName		      off
-      Value		      "[1 0 0 0]"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Degrees to\nRadians"
-      SID		      "24"
-      Ports		      [1, 1]
-      Position		      [140, 75, 170, 105]
-      LibraryVersion	      "1.43"
-      SourceBlock	      "simulink_extras/Transformations/Degrees to\nRadians"
-      SourceType	      "DegreesToRadians"
-    }
-    Block {
-      BlockType		      Integrator
-      Name		      "Integrator"
-      SID		      "75"
-      Ports		      [2, 1]
-      Position		      [330, 61, 360, 114]
-      ZOrder		      -2
-      InitialConditionSource  "external"
+      Value		      "input_q"
     }
     Block {
       BlockType		      Reference
@@ -780,127 +737,40 @@ Model {
       Ports		      [2, 1]
       Position		      [205, 45, 270, 105]
       ZOrder		      -17
-      LibraryVersion	      "1.16"
+      LibraryVersion	      "1.11"
       SourceBlock	      "AeroSim/Mathematics/Quaternion\nDerivative"
       SourceType	      "SubSystem"
     }
     Block {
-      BlockType		      Reference
-      Name		      "Quaternion\nNormalise"
-      SID		      "84"
-      Ports		      [1, 1]
-      Position		      [380, 72, 430, 108]
-      LibraryVersion	      "1.16"
-      SourceBlock	      "AeroSim/Mathematics/Quaternion\nNormalise"
-      SourceType	      "SubSystem"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Quaternions to Rotation Angles"
-      SID		      "77"
-      Ports		      [1, 1]
-      Position		      [465, 69, 565, 111]
-      ZOrder		      -17
-      AttributesFormatString  "Rotation Order: %<rotationOrder>"
-      LibraryVersion	      "1.273"
-      SourceBlock	      "aerolibtransform2/Quaternions to Rotation Angles"
-      SourceType	      "Quat2Ang"
-      rotationOrder	      "ZYX"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Radians\nto Degrees"
-      SID		      "82"
-      Ports		      [1, 1]
-      Position		      [605, 75, 635, 105]
-      LibraryVersion	      "1.43"
-      SourceBlock	      "simulink_extras/Transformations/Radians\nto Degrees"
-      SourceType	      "RadiansToDegrees"
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Scope"
-      SID		      "81"
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      SID		      "85"
       Ports		      [1]
-      Position		      [660, 74, 690, 106]
-      ZOrder		      -3
-      Floating		      off
-      Location		      [1, 48, 1367, 737]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      List {
-	ListType		ScopeGraphics
-	FigureColor		"[0.5 0.5 0.5]"
-	AxesColor		"[0 0 0]"
-	AxesTickColor		"[1 1 1]"
-	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
-	LineStyles		"-|-|-|-|-|-"
-	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
-	MarkerStyles		"none|none|none|none|none|none"
-      }
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
+      Position		      [315, 66, 395, 84]
+      ZOrder		      -7
+      ShowName		      off
+      VariableName	      "output_dq"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
     }
     Line {
       SrcBlock		      "Constant1"
-      SrcPort		      1
-      DstBlock		      "Degrees to\nRadians"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Degrees to\nRadians"
       SrcPort		      1
       DstBlock		      "Quaternion\nDerivative"
       DstPort		      2
     }
     Line {
-      SrcBlock		      "Quaternion\nDerivative"
-      SrcPort		      1
-      DstBlock		      "Integrator"
-      DstPort		      1
-    }
-    Line {
       SrcBlock		      "Constant2"
       SrcPort		      1
-      Points		      [15, 0; 0, -60]
-      DstBlock		      "Integrator"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Integrator"
-      SrcPort		      1
-      DstBlock		      "Quaternion\nNormalise"
+      DstBlock		      "Quaternion\nDerivative"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Quaternions to Rotation Angles"
+      SrcBlock		      "Quaternion\nDerivative"
       SrcPort		      1
-      DstBlock		      "Radians\nto Degrees"
+      DstBlock		      "To Workspace"
       DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Radians\nto Degrees"
-      SrcPort		      1
-      DstBlock		      "Scope"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Quaternion\nNormalise"
-      SrcPort		      1
-      Points		      [10, 0]
-      Branch {
-	DstBlock		"Quaternions to Rotation Angles"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -50; -255, 0]
-	DstBlock		"Quaternion\nDerivative"
-	DstPort			1
-      }
     }
   }
 }
