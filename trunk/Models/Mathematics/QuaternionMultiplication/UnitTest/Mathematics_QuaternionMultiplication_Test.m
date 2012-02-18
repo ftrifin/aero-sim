@@ -1,5 +1,5 @@
 %% Mathematics_QuaternionMultiplication Model Test %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
 
 diary_file = [getenv('AeroSim_Install') '\Models\Mathematics\QuaternionMultiplication\TestResults\Mathematics_QuaternionMultiplication_Test_' date '.txt'];
