@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Ryan"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Feb 17 17:27:45 2012"
-  RTWModifiedTimeStamp	  251400437
-  ModelVersionFormat	  "1.%<AutoIncrement:11>"
+  LastModifiedDate	  "Sat Feb 18 14:40:04 2012"
+  RTWModifiedTimeStamp	  251476784
+  ModelVersionFormat	  "1.%<AutoIncrement:12>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -825,7 +825,7 @@ Library {
   }
   System {
     Name		    "AeroSim"
-    Location		    [227, 394, 669, 695]
+    Location		    [269, 310, 711, 611]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    212
@@ -839,7 +839,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "277"
+    SIDHighWatermark	    "411"
     Block {
       BlockType		      SubSystem
       Name		      "Dynamics"
@@ -863,7 +863,7 @@ Library {
       System {
 	Name			"Dynamics"
 	Location		[210, 82, 673, 709]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2180,7 +2180,7 @@ Library {
       System {
 	Name			"Mathematics"
 	Location		[345, 364, 652, 653]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	212
 	ScreenColor		"white"
@@ -3430,6 +3430,132 @@ Library {
 	      SrcBlock		      "Selector"
 	      SrcPort		      1
 	      DstBlock		      "vb"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Unit Vector"
+	  SID			  "405"
+	  Ports			  [1, 1]
+	  Position		  [15, 218, 75, 282]
+	  ZOrder		  -17
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Unit Vector"
+	    Location		    [434, 234, 932, 534]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "v"
+	      SID		      "406"
+	      Position		      [15, 48, 45, 62]
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide"
+	      SID		      "407"
+	      Ports		      [2, 1]
+	      Position		      [280, 19, 310, 66]
+	      ShowName		      off
+	      Inputs		      "*/"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Math
+	      Name		      "Math\nFunction"
+	      SID		      "408"
+	      Ports		      [1, 1]
+	      Position		      [90, 40, 120, 70]
+	      ShowName		      off
+	      Operator		      "square"
+	    }
+	    Block {
+	      BlockType		      Math
+	      Name		      "Math\nFunction1"
+	      SID		      "409"
+	      Ports		      [1, 1]
+	      Position		      [215, 40, 245, 70]
+	      ShowName		      off
+	      Operator		      "sqrt"
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum of\nElements"
+	      SID		      "410"
+	      Ports		      [1, 1]
+	      Position		      [155, 40, 185, 70]
+	      ShowName		      off
+	      Inputs		      "+"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "||v||"
+	      SID		      "411"
+	      Position		      [340, 38, 370, 52]
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "v"
+	      SrcPort		      1
+	      Points		      [15, 0]
+	      Branch {
+		Points			[0, -25]
+		DstBlock		"Divide"
+		DstPort			1
+	      }
+	      Branch {
+		DstBlock		"Math\nFunction"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Divide"
+	      SrcPort		      1
+	      DstBlock		      "||v||"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Math\nFunction1"
+	      SrcPort		      1
+	      DstBlock		      "Divide"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Sum of\nElements"
+	      SrcPort		      1
+	      DstBlock		      "Math\nFunction1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Math\nFunction"
+	      SrcPort		      1
+	      DstBlock		      "Sum of\nElements"
 	      DstPort		      1
 	    }
 	  }
