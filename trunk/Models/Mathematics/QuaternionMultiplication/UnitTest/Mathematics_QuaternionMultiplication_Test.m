@@ -31,14 +31,14 @@ error = (output_q' - expected_output_q) ./ expected_output_q;
 
 %% Test Result
 disp('Input:')
-disp(['    v1 = [' num2str(input_q1') ']'])
-disp(['    v2 = [' num2str(input_q2') ']'])
+disp(['    q1 = [' num2str(input_q1') ']'])
+disp(['    q2 = [' num2str(input_q2') ']'])
 disp(' ')
 disp('Expected Output:')
-disp(['    v = [' num2str(expected_output_q') ']'])
+disp(['    q = [' num2str(expected_output_q') ']'])
 disp(' ')
 disp('Actual Output:')
-disp(['    v = [' num2str(output_q) ']'])
+disp(['    q = [' num2str(output_q) ']'])
 disp(' ')
 disp('Error:')
 disp(['    e = [' num2str(error') ']'])
