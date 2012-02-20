@@ -47,8 +47,11 @@ disp(['    t = ' num2str(tolerance)])
 disp('-------------------------------------------------------------------')
 if all(error) <= tolerance
     disp('TEST PASSED')
+    result = true;
+    
 else
     disp('TEST FAILED')
+    result = false;
 end
 disp('-------------------------------------------------------------------')
 
