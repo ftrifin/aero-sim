@@ -2,7 +2,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
 
-diary_file = [getenv('AeroSim_Install') '\Models\Mathematics\VectorNorm\TestResults\Mathematics_VectorNorm_Test_' date '.txt'];
+diary_file = [getenv('AEROSIM_INSTALL') '\Models\Mathematics\VectorNorm\TestResults\Mathematics_VectorNorm_Test_' date '.txt'];
 if exist(diary_file, 'file')
     delete(diary_file)
 end

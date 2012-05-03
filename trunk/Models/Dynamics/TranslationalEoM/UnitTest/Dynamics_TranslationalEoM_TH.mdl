@@ -1,16 +1,27 @@
 Model {
-  Name			  "Environment_Gravity_TH"
+  Name			  "Dynamics_TranslationalEoM_TH"
   Version		  7.9
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.11"
+    ComputedModelVersion    "1.31"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
   SavedCharacterEncoding  "UTF-8"
+  slprops.hdlmdlprops {
+    $PropName		    "HDLParams"
+    $ObjectID		    1
+    Array {
+      Type		      "Cell"
+      Dimension		      2
+      Cell		      "HDLSubsystem"
+      Cell		      "Dynamics_TranslationalEoM_TH"
+      PropName		      "mdlProps"
+    }
+  }
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -21,19 +32,19 @@ Model {
   MinMaxOverflowArchiveMode "Overwrite"
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  Created		  "Thu Apr 05 16:39:27 2012"
-  Creator		  "osborn_r"
+  Created		  "Wed Jan 18 18:07:45 2012"
+  Creator		  "Ryan"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "ryan"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu May 03 19:10:45 2012"
-  RTWModifiedTimeStamp	  257973035
-  ModelVersionFormat	  "1.%<AutoIncrement:11>"
+  LastModifiedDate	  "Thu May 03 21:10:06 2012"
+  RTWModifiedTimeStamp	  257980186
+  ModelVersionFormat	  "1.%<AutoIncrement:31>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
-  LibraryLinkDisplay	  "none"
+  LibraryLinkDisplay	  "disabled"
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
@@ -62,6 +73,26 @@ Model {
   AccelTemplateMakefile	  "accel_default_tmf"
   AccelMakeCommand	  "make_rtw"
   TryForcingSFcnDF	  off
+  Object {
+    $PropName		    "DataLoggingOverride"
+    $ObjectID		    2
+    $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
+    model_		    "Dynamics_3DoFTrans"
+    signals_		    []
+    overrideMode_	    [0.0]
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      "Dynamics_3DoFTrans"
+      PropName		      "logAsSpecifiedByModels_"
+    }
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      []
+      PropName		      "logAsSpecifiedByModelsSSIDs_"
+    }
+  }
   RecordCoverage	  off
   CovPath		  "/"
   CovSaveName		  "covdata"
@@ -104,16 +135,16 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      1
+      $ObjectID		      3
       Version		      "1.12.0"
       Array {
 	Type			"Handle"
-	Dimension		8
+	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  2
+	  $ObjectID		  4
 	  Version		  "1.12.0"
 	  StartTime		  "0.0"
-	  StopTime		  "0"
+	  StopTime		  "time_span"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.1"
 	  InitialStep		  "auto"
@@ -124,15 +155,15 @@ Model {
 	  MaxConsecutiveZCs	  "1000"
 	  ExtrapolationOrder	  4
 	  NumberNewtonIterations  1
-	  MaxStep		  "auto"
+	  MaxStep		  "10"
 	  MinStep		  "auto"
 	  MaxConsecutiveMinStep	  "1"
-	  RelTol		  "1e-3"
+	  RelTol		  "1e-10"
 	  SolverMode		  "Auto"
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
-	  Solver		  "FixedStepDiscrete"
-	  SolverName		  "FixedStepDiscrete"
+	  Solver		  "ode45"
+	  SolverName		  "ode45"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -145,7 +176,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  3
+	  $ObjectID		  5
 	  Version		  "1.12.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -177,11 +208,11 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  4
+	  $ObjectID		  6
 	  Version		  "1.12.0"
 	  Array {
 	    Type		    "Cell"
-	    Dimension		    7
+	    Dimension		    8
 	    Cell		    "BooleansAsBitfields"
 	    Cell		    "PassReuseOutputArgsAs"
 	    Cell		    "PassReuseOutputArgsThreshold"
@@ -189,6 +220,7 @@ Model {
 	    Cell		    "ZeroInternalMemoryAtStartup"
 	    Cell		    "OptimizeModelRefInitCode"
 	    Cell		    "NoFixptDivByZeroProtection"
+	    Cell		    "UseSpecifiedMinMax"
 	    PropName		    "DisabledProps"
 	  }
 	  BlockReduction	  on
@@ -232,7 +264,7 @@ Model {
 	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  5
+	  $ObjectID		  7
 	  Version		  "1.12.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -282,7 +314,7 @@ Model {
 	  UnnecessaryDatatypeConvMsg "none"
 	  VectorMatrixConversionMsg "none"
 	  InvalidFcnCallConnMsg	  "error"
-	  FcnCallInpInsideContextMsg "Use local settings"
+	  FcnCallInpInsideContextMsg "Enable All"
 	  SignalLabelMismatchMsg  "none"
 	  UnconnectedInputMsg	  "warning"
 	  UnconnectedOutputMsg	  "warning"
@@ -307,7 +339,7 @@ Model {
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
 	  InitInArrayFormatMsg	  "warning"
-	  StrictBusMsg		  "Warning"
+	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
 	  NonBusSignalsTreatedAsBus "none"
 	  LoggingUnavailableSignals "error"
@@ -320,7 +352,7 @@ Model {
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  6
+	  $ObjectID		  8
 	  Version		  "1.12.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -357,7 +389,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  7
+	  $ObjectID		  9
 	  Version		  "1.12.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -372,7 +404,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  8
+	  $ObjectID		  10
 	  Version		  "1.12.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -387,17 +419,19 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  9
+	  $ObjectID		  11
 	  Version		  "1.12.0"
 	  Array {
 	    Type		    "Cell"
-	    Dimension		    6
+	    Dimension		    8
 	    Cell		    "IncludeHyperlinkInReport"
 	    Cell		    "GenerateTraceInfo"
 	    Cell		    "GenerateTraceReport"
 	    Cell		    "GenerateTraceReportSl"
 	    Cell		    "GenerateTraceReportSf"
 	    Cell		    "GenerateTraceReportEml"
+	    Cell		    "GenerateSLWebview"
+	    Cell		    "GenerateCodeMetricsReport"
 	    PropName		    "DisabledProps"
 	  }
 	  SystemTargetFile	  "grt.tlc"
@@ -439,15 +473,17 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      10
+	      $ObjectID		      12
 	      Version		      "1.12.0"
 	      Array {
 		Type			"Cell"
-		Dimension		19
+		Dimension		21
 		Cell			"IgnoreCustomStorageClasses"
 		Cell			"IgnoreTestpoints"
 		Cell			"InsertBlockDesc"
+		Cell			"InsertPolySpaceComments"
 		Cell			"SFDataObjDesc"
+		Cell			"MATLABFcnDesc"
 		Cell			"SimulinkDataObjDesc"
 		Cell			"DefineNamingRule"
 		Cell			"SignalNamingRule"
@@ -502,7 +538,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      11
+	      $ObjectID		      13
 	      Version		      "1.12.0"
 	      Array {
 		Type			"Cell"
@@ -518,11 +554,11 @@ Model {
 		Cell			"CPPClassGenCompliant"
 		Cell			"MultiInstanceERTCode"
 		Cell			"PurelyIntegerCode"
-		Cell			"PortableWordSizes"
 		Cell			"SupportComplex"
 		Cell			"SupportAbsoluteTime"
 		Cell			"SupportContinuousTime"
 		Cell			"SupportNonInlinedSFcns"
+		Cell			"PortableWordSizes"
 		PropName		"DisabledProps"
 	      }
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
@@ -584,17 +620,30 @@ Model {
 	    PropName		    "Components"
 	  }
 	}
+	hdlcoderui.hdlcc {
+	  $ObjectID		  14
+	  Version		  "1.12.0"
+	  Description		  "HDL Coder custom configuration component"
+	  Name			  "HDL Coder"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    ""
+	    PropName		    "HDLConfigFile"
+	  }
+	  HDLCActiveTab		  "0"
+	}
 	PropName		"Components"
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 212, 72, 1154, 656 ] 
+      ConfigPrmDlgPosition     [ 166, 40, 1142, 719 ] 
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    1
+    $ObjectID		    3
   }
   ExplicitPartitioning	  off
   BlockDefaults {
@@ -657,6 +706,21 @@ Model {
       BlockType		      Ground
     }
     Block {
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      ToWorkspace
       VariableName	      "simulink_output"
       MaxDataPoints	      "1000"
@@ -668,8 +732,8 @@ Model {
     }
   }
   System {
-    Name		    "Environment_Gravity_TH"
-    Location		    [72, 98, 880, 270]
+    Name		    "Dynamics_TranslationalEoM_TH"
+    Location		    [1, 79, 1367, 796]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -683,23 +747,47 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "25"
+    SIDHighWatermark	    "59"
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
-      SID		      "9"
+      SID		      "14"
+      Ports		      [2, 1]
+      Position		      [635, 228, 640, 277]
+      ZOrder		      -2
+      ShowName		      off
+      Inputs		      "2"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      BusCreator
+      Name		      "Bus\nCreator1"
+      SID		      "15"
+      Ports		      [2, 1]
+      Position		      [635, 283, 640, 332]
+      ZOrder		      -2
+      ShowName		      off
+      Inputs		      "2"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      BusCreator
+      Name		      "Bus\nCreator2"
+      SID		      "47"
       Ports		      [1, 1]
-      Position		      [290, 16, 295, 54]
+      Position		      [635, 89, 640, 121]
+      ZOrder		      -2
       ShowName		      off
       Inputs		      "1"
       DisplayOption	      "bar"
     }
     Block {
       BlockType		      BusCreator
-      Name		      "Bus\nCreator1"
-      SID		      "11"
+      Name		      "Bus\nCreator3"
+      SID		      "48"
       Ports		      [1, 1]
-      Position		      [290, 56, 295, 94]
+      Position		      [635, 129, 640, 161]
+      ZOrder		      -2
       ShowName		      off
       Inputs		      "1"
       DisplayOption	      "bar"
@@ -707,9 +795,25 @@ Model {
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector"
-      SID		      "23"
+      SID		      "50"
       Ports		      [1, 1]
-      Position		      [550, 46, 555, 84]
+      Position		      [505, 90, 510, 120]
+      ZOrder		      -3
+      ShowName		      off
+      OutputSignals	      "Position_vec_FI"
+      Port {
+	PortNumber		1
+	Name			"<Position_vec_FI>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      BusSelector
+      Name		      "Bus\nSelector1"
+      SID		      "51"
+      Ports		      [1, 1]
+      Position		      [350, 215, 355, 245]
       ZOrder		      -3
       ShowName		      off
       OutputSignals	      "Gravity_vec_FI"
@@ -721,15 +825,17 @@ Model {
       }
     }
     Block {
-      BlockType		      Constant
-      Name		      "Constant"
-      SID		      "10"
-      Position		      [15, 24, 165, 46]
+      BlockType		      BusSelector
+      Name		      "Bus\nSelector2"
+      SID		      "53"
+      Ports		      [1, 1]
+      Position		      [1005, 309, 1010, 331]
+      ZOrder		      -3
       ShowName		      off
-      Value		      "Input_Position_vec_FI"
+      OutputSignals	      "Position_vec_FI"
       Port {
 	PortNumber		1
-	Name			"Position_vec_FI"
+	Name			"<Position_vec_FI>"
 	RTWStorageClass		"Auto"
 	DataLoggingNameMode	"SignalName"
       }
@@ -737,8 +843,53 @@ Model {
     Block {
       BlockType		      Constant
       Name		      "Constant1"
-      SID		      "12"
-      Position		      [15, 64, 165, 86]
+      SID		      "13"
+      Position		      [295, 255, 405, 275]
+      ZOrder		      -4
+      ShowName		      off
+      Value		      "Input_Mass"
+      Port {
+	PortNumber		1
+	Name			"Mass"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant2"
+      SID		      "44"
+      Position		      [30, 285, 405, 305]
+      ZOrder		      -4
+      ShowName		      off
+      Value		      "Dynamics.TranslationalEoM.Initialisation.Ini_Velocity_vec_FI"
+      Port {
+	PortNumber		1
+	Name			"Ini_Velocity_vec_FI"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant3"
+      SID		      "17"
+      Position		      [30, 310, 405, 330]
+      ZOrder		      -4
+      ShowName		      off
+      Value		      "Dynamics.TranslationalEoM.Initialisation.Ini_Position_vec_FI"
+      Port {
+	PortNumber		1
+	Name			"Ini_Position_vec_FI"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant4"
+      SID		      "45"
+      Position		      [430, 134, 580, 156]
       ShowName		      off
       Value		      "Global.Planet.Mu"
       Port {
@@ -751,83 +902,212 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "Gravity"
-      SID		      "25"
+      SID		      "46"
       Ports		      [4, 1]
-      Position		      [385, 27, 520, 103]
-      LibraryVersion	      "1.14"
+      Position		      [770, 97, 905, 173]
+      LibraryVersion	      "1.16"
       SourceBlock	      "AeroSim/Environment/Gravity"
       SourceType	      "SubSystem"
     }
     Block {
       BlockType		      Ground
       Name		      "Ground"
-      SID		      "13"
-      Position		      [320, 85, 340, 105]
+      SID		      "7"
+      Position		      [710, 320, 730, 340]
+      ZOrder		      -9
       ShowName		      off
+    }
+    Block {
+      BlockType		      Ground
+      Name		      "Ground1"
+      SID		      "49"
+      Position		      [710, 115, 730, 135]
+      ZOrder		      -9
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Product"
+      SID		      "52"
+      Ports		      [2, 1]
+      Position		      [490, 222, 520, 253]
+      ZOrder		      -19
+      ShowName		      off
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+      Port {
+	PortNumber		1
+	Name			"Force_vec_FI"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
     }
     Block {
       BlockType		      ToWorkspace
       Name		      "To Workspace"
-      SID		      "24"
+      SID		      "54"
       Ports		      [1]
-      Position		      [675, 54, 755, 76]
+      Position		      [1135, 309, 1295, 331]
       ZOrder		      -7
-      VariableName	      "output_g"
+      ShowName		      off
+      VariableName	      "Output_Position_vec_FI"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
     }
-    Line {
-      Name		      "Position_vec_FI"
-      Labels		      [0, 0]
-      SrcBlock		      "Constant"
-      SrcPort		      1
-      DstBlock		      "Bus\nCreator"
-      DstPort		      1
-    }
-    Line {
-      Name		      "Mu"
-      Labels		      [0, 0]
-      SrcBlock		      "Constant1"
-      SrcPort		      1
-      DstBlock		      "Bus\nCreator1"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Bus\nCreator"
-      SrcPort		      1
-      DstBlock		      "Gravity"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Bus\nCreator1"
-      SrcPort		      1
-      DstBlock		      "Gravity"
-      DstPort		      3
+    Block {
+      BlockType		      Reference
+      Name		      "Translational EoM"
+      SID		      "43"
+      Ports		      [4, 1]
+      Position		      [770, 282, 900, 358]
+      ZOrder		      -17
+      LibraryVersion	      "1.16"
+      SourceBlock	      "AeroSim/Dynamics/Translational EoM"
+      SourceType	      "SubSystem"
     }
     Line {
       SrcBlock		      "Ground"
       SrcPort		      1
       Points		      [10, 0]
       Branch {
-	Points			[0, -40]
+	Points			[0, 20]
+	DstBlock		"Translational EoM"
+	DstPort			4
+      }
+      Branch {
+	DstBlock		"Translational EoM"
+	DstPort			3
+      }
+    }
+    Line {
+      Name		      "Mass"
+      Labels		      [0, 0]
+      SrcBlock		      "Constant1"
+      SrcPort		      1
+      Points		      [60, 0]
+      Branch {
+	DstBlock		"Bus\nCreator"
+	DstPort			2
+      }
+      Branch {
+	Points			[0, -20]
+	DstBlock		"Product"
+	DstPort			2
+      }
+    }
+    Line {
+      Name		      "Force_vec_FI"
+      Labels		      [0, 0]
+      SrcBlock		      "Product"
+      SrcPort		      1
+      DstBlock		      "Bus\nCreator"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Bus\nCreator"
+      SrcPort		      1
+      Points		      [80, 0; 0, 35]
+      DstBlock		      "Translational EoM"
+      DstPort		      1
+    }
+    Line {
+      Name		      "Ini_Position_vec_FI"
+      Labels		      [0, 0]
+      SrcBlock		      "Constant3"
+      SrcPort		      1
+      DstBlock		      "Bus\nCreator1"
+      DstPort		      2
+    }
+    Line {
+      Name		      "Ini_Velocity_vec_FI"
+      Labels		      [0, 0]
+      SrcBlock		      "Constant2"
+      SrcPort		      1
+      DstBlock		      "Bus\nCreator1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Bus\nCreator1"
+      SrcPort		      1
+      DstBlock		      "Translational EoM"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Bus\nCreator2"
+      SrcPort		      1
+      DstBlock		      "Gravity"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Bus\nCreator3"
+      SrcPort		      1
+      DstBlock		      "Gravity"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Ground1"
+      SrcPort		      1
+      Points		      [10, 0]
+      Branch {
 	DstBlock		"Gravity"
 	DstPort			2
       }
       Branch {
+	Points			[0, 40]
 	DstBlock		"Gravity"
 	DstPort			4
       }
     }
     Line {
+      Name		      "Mu"
+      Labels		      [0, 0]
+      SrcBlock		      "Constant4"
+      SrcPort		      1
+      DstBlock		      "Bus\nCreator3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Translational EoM"
+      SrcPort		      1
+      Points		      [65, 0]
+      Branch {
+	Points			[0, -255; -515, 0; 0, 40]
+	DstBlock		"Bus\nSelector"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Bus\nSelector2"
+	DstPort			1
+      }
+    }
+    Line {
+      Name		      "<Position_vec_FI>"
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector"
+      SrcPort		      1
+      DstBlock		      "Bus\nCreator2"
+      DstPort		      1
+    }
+    Line {
       SrcBlock		      "Gravity"
       SrcPort		      1
-      DstBlock		      "Bus\nSelector"
+      Points		      [35, 0; 0, 60; -610, 0]
+      DstBlock		      "Bus\nSelector1"
       DstPort		      1
     }
     Line {
       Name		      "<Gravity_vec_FI>"
       Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector"
+      SrcBlock		      "Bus\nSelector1"
+      SrcPort		      1
+      DstBlock		      "Product"
+      DstPort		      1
+    }
+    Line {
+      Name		      "<Position_vec_FI>"
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
       SrcPort		      1
       DstBlock		      "To Workspace"
       DstPort		      1
